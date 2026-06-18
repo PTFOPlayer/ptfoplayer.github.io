@@ -25,9 +25,11 @@
         <li><a href="#features">Features</a></li>
         <li><a href="#install">Install</a></li>
         <li><a href="#usage">Usage</a></li>
-        <li><a href="#library">Library</a></li>
+        <li><a href="#tools">Tools</a></li>
         <li><a href="#modes">Modes</a></li>
+        <li><a href="#skills">Skills</a></li>
         <li><a href="#commands">Commands</a></li>
+        <li><a href="#structure">Structure</a></li>
         <li><a href="https://github.com/PTFOPlayer/TinyHarness" class="nav-github" target="_blank" rel="noopener">
           <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
           GitHub
@@ -45,12 +47,13 @@
       <div class="hero-badge">
         <span class="badge">🦀 Rust</span>
         <span class="badge">MIT Licensed</span>
+        <span class="badge">v0.2.0</span>
         <a class="badge badge-link" href="https://github.com/PTFOPlayer/TinyHarness/stargazers" target="_blank" rel="noopener">
-          ⭐ 19 stars
+          ⭐ 28 stars
         </a>
       </div>
       <h1 class="hero-title">TinyHarness</h1>
-      <p class="hero-tagline">Lightweight AI assistant framework in Rust. Pluggable LLM providers, built-in tool calling, web search, agent skills — and a reusable library crate. Runs on under 20&nbsp;MB of RAM with zero idle CPU.</p>
+      <p class="hero-tagline">Lightweight AI assistant framework in Rust. Pluggable LLM providers, 15 built-in tools, agent modes, skills, web search, image attachments, experimental TUI — and a reusable library crate. Runs on under 20&nbsp;MB of RAM with zero idle CPU.</p>
       <div class="hero-cta">
         <a href="https://github.com/PTFOPlayer/TinyHarness" class="btn btn-primary" target="_blank" rel="noopener">
           <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -72,32 +75,87 @@
         <div class="feature-card">
           <div class="feature-icon">🔌</div>
           <h3>Pluggable Providers</h3>
-          <p>Ollama, llama.cpp, vLLM, and any OpenAI-compatible API. Swap backends without changing application code.</p>
+          <p>Ollama, llama.cpp, vLLM, and any OpenAI-compatible API. Swap backends without changing application code. Ollama supports retries with backoff, configurable timeouts, and reasoning/think levels.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🛠️</div>
           <h3>Tool System</h3>
-          <p>Modular tools — <code>ls</code>, <code>read</code>, <code>write</code>, <code>edit</code>, <code>grep</code>, <code>glob</code>, <code>run</code>, <code>web_search</code> — that let the AI interact with your filesystem and the web.</p>
+          <p>15 modular tools — <code>ls</code>, <code>read</code>, <code>write</code>, <code>edit</code>, <code>grep</code>, <code>glob</code>, <code>run</code>, <code>web_search</code>, <code>web_fetch</code>, <code>auto_compact</code>, <code>invoke_skill</code>, <code>switch_mode</code>, <code>question</code>, <code>screenshot</code>, plus the built-in <code>read</code> image loader for multimodal models.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🎭</div>
           <h3>Agent Modes</h3>
-          <p>Four modes — <strong>casual</strong>, <strong>planning</strong>, <strong>agent</strong>, and <strong>research</strong> — to control what the AI can do at any given moment.</p>
+          <p>Four modes — <strong>casual</strong>, <strong>planning</strong>, <strong>agent</strong>, and <strong>research</strong> — to control what the AI can do. Modes are backed by customizable <code>.md</code> prompt files.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🧩</div>
           <h3>Skills</h3>
-          <p>Pluggable skill modules that inject specialized instructions for specific tasks like PDF processing or image analysis.</p>
+          <p>Pluggable <code>SKILL.md</code> modules discovered from <code>~/.config/tinyharness/skills/</code> and <code>.tinyharness/skills/</code>. Invokable by the AI via <code>invoke_skill</code> or by the user via <code>/use</code>. Supports YAML frontmatter with name, description, compatibility, and licensing.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">💾</div>
           <h3>Session Persistence</h3>
-          <p>JSONL-based sessions with UUIDs, saved locally. Pick up conversations right where you left off.</p>
+          <p>JSONL-based sessions with UUIDs, saved in <code>~/.local/share/tinyharness/sessions/</code>. Supports session listing, switching by prefix, renaming, deletion, and auto-save every 5 messages.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🌐</div>
           <h3>Web Search</h3>
           <p>Built-in <code>web_search</code> and <code>web_fetch</code> tools powered by the Ollama web search API. The AI can look up documentation, fetch web pages, and stay current without leaving the terminal.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Context Management</h3>
+          <p>Token estimation with per-model context window sizes (8K–256K), load warnings at 70%/90% thresholds, and cascading conversation compaction via <code>/compact</code>.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Async Streaming</h3>
+          <p>Built on <code>tokio</code> for efficient streaming with all providers. Ctrl+C interrupts generation gracefully.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🖥️</div>
+          <h3>Experimental TUI</h3>
+          <p>Split-pane terminal UI with conversation view, sidebar, input bar, and tool output panel. Built from scratch with no external TUI framework. Activate with <code>--tui</code>. ⚠️ Experimental.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⌨️</div>
+          <h3>Interactive CLI</h3>
+          <p>Color-coded terminal interface with 22+ slash commands for session management, configuration, file pinning, image attachment, audit logging, and tool control.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📝</div>
+          <h3>Customizable Prompts</h3>
+          <p>System prompts are seeded from hardcoded defaults on first launch to <code>~/.config/tinyharness/prompts/</code> and can be freely edited.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>Command Safety</h3>
+          <p>Smart auto-accept for safe shell commands with prefix matching, deny lists, redirection stripping, and audit logging. The <code>run</code> tool can never be auto-accepted.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧠</div>
+          <h3>Thinking Display</h3>
+          <p>Optionally render the model's reasoning chain inline during streaming. Toggle via <code>/showthink</code>.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🖼️</div>
+          <h3>Image Attachments</h3>
+          <p>Multimodal support — attach images with <code>/image</code> and the <code>read</code> tool automatically loads image files for visual models.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📄</div>
+          <h3>Project Instructions</h3>
+          <p>Auto-discovers <code>TINYHARNESS.md</code>, <code>.tinyharness.md</code>, <code>AGENTS.md</code>, or <code>CLAUDE.md</code> walking up from the current directory. Configurable via env var or settings.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚙️</div>
+          <h3>Per-Project Settings</h3>
+          <p>Layer <code>.tinyharness/config.json</code> over global settings. Override safe/denied commands, auto-accept behavior, context limits, preferred mode, and more per project.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>Smart Language Detection</h3>
+          <p>Auto-detects 17+ languages and build tools (Rust, Zig, Deno, Bun, Swift, Ruby, Elixir, Haskell, Kotlin, .NET, Dart/Flutter, Nix, Node.js, Python, Go, Java, C/C++). Detects monorepos.</p>
         </div>
         <div class="feature-card feature-card-full">
           <div class="feature-icon">🪶</div>
@@ -147,7 +205,19 @@ make install">Copy</button>
 cd TinyHarness
 make install</code></pre>
           </div>
-          <p class="step-note">Builds in release mode and copies the binary to <code>~/.local/bin</code>.</p>
+          <p class="step-note">Builds in release mode and copies the binary to <code>~/.local/bin</code>. Uninstall with <code>make uninstall</code>.</p>
+        </div>
+        <div class="step">
+          <h3>Nix <span class="badge badge-sm">Reproducible</span></h3>
+          <p class="step-note" style="margin-bottom: 10px;">A Nix flake is provided for reproducible builds and dev environments.</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-dot"></span><span class="code-dot"></span><span class="code-dot"></span>
+              <button class="copy-btn" data-copy="nix run github:PTFOPlayer/TinyHarness">Copy</button>
+            </div>
+            <pre><code>nix run github:PTFOPlayer/TinyHarness</code></pre>
+          </div>
+          <p class="step-note">Or build: <code>nix build</code> · Dev shell: <code>nix develop</code></p>
         </div>
       </div>
     </div>
@@ -188,47 +258,78 @@ tinyharness --ollama --url http://192.168.1.50:11434
 tinyharness --vllm --url http://gpu-server:8000</code></pre>
         </div>
       </div>
+      <div class="usage-note">
+        <h4>Continue, Prompt, TUI &amp; Setup</h4>
+        <div class="code-block">
+          <pre><code>tinyharness --continue              # Resume the most recent session
+tinyharness -p "What does this project do?"  # Start with a prompt
+tinyharness --tui                   # Launch the experimental TUI
+tinyharness --config                # Interactive provider setup</code></pre>
+        </div>
+      </div>
+      <div class="table-wrapper" style="margin-top: 30px;">
+        <table class="modes-table">
+          <thead>
+            <tr>
+              <th>Flag</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>-o, --ollama</code></td><td>Use the Ollama provider (default)</td></tr>
+            <tr><td><code>-l, --llama-cpp</code></td><td>Use the llama.cpp provider</td></tr>
+            <tr><td><code>-v, --vllm</code></td><td>Use the vLLM provider</td></tr>
+            <tr><td><code>-u, --url &lt;url&gt;</code></td><td>Custom base URL for the provider</td></tr>
+            <tr><td><code>-c, --continue</code></td><td>Continue the most recent session in the current directory</td></tr>
+            <tr><td><code>--config</code></td><td>Run interactive provider setup, then exit</td></tr>
+            <tr><td><code>-p, --prompt &lt;msg&gt;</code></td><td>Start with this message, then drop into interactive mode</td></tr>
+            <tr><td><code>--tui</code></td><td>Launch the experimental terminal UI (split-pane TUI)</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
-  <!-- Use as a Library -->
-  <section id="library" class="section">
+  <!-- Tools -->
+  <section id="tools" class="section section-alt">
     <div class="container">
-      <h2 class="section-title">Use as a Library</h2>
-      <p class="section-subtitle">The core of TinyHarness is exposed as <code>tinyharness-lib</code> — a crate you can pull into any Rust project to get AI tooling without the terminal frontend.</p>
-      <div class="install-steps">
-        <div class="step">
-          <h3>Add the dependency</h3>
-          <div class="code-block">
-            <div class="code-header">
-              <span class="code-dot"></span><span class="code-dot"></span><span class="code-dot"></span>
-              <button class="copy-btn" data-copy="[dependencies]
-tinyharness-lib = &quot;0.1&quot;">Copy</button>
-            </div>
-            <pre><code>[dependencies]
-tinyharness-lib = &quot;0.1&quot;</code></pre>
-          </div>
-          <p class="step-note">Or run <code>cargo add tinyharness-lib</code>.</p>
-        </div>
-        <div class="step">
-          <h3>What you get</h3>
-          <ul class="checklist">
-            <li><strong>Provider trait</strong> — Ollama, llama.cpp, vLLM, and OpenAI-compatible backends, ready to swap</li>
-            <li><strong>Tool system</strong> — <code>ls</code>, <code>read</code>, <code>write</code>, <code>edit</code>, <code>grep</code>, <code>glob</code>, <code>run</code>, <code>web_search</code> with confirmation hooks</li>
-            <li><strong>Session management</strong> — JSONL-based conversations with UUIDs, token estimation, and compaction</li>
-            <li><strong>Agent modes</strong> — casual, planning, agent, research — control which tools are available</li>
-            <li><strong>Skills registry</strong> — pluggable instruction injectors for specialized tasks</li>
-            <li><strong>Project context</strong> — TINYHARNESS.md parsing and file pinning</li>
-          </ul>
-        </div>
+      <h2 class="section-title">Tools</h2>
+      <p class="section-subtitle">15 modular tools across four categories — read-only, destructive, signal, and web.</p>
+      <div class="table-wrapper">
+        <table class="modes-table">
+          <thead>
+            <tr>
+              <th>Tool</th>
+              <th>Category</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>ls</code></td><td><span class="cat-badge cat-readonly">ReadOnly</span></td><td>List directory contents</td></tr>
+            <tr><td><code>read</code></td><td><span class="cat-badge cat-readonly">ReadOnly</span></td><td>Read file content (also loads images for multimodal models)</td></tr>
+            <tr><td><code>grep</code></td><td><span class="cat-badge cat-readonly">ReadOnly</span></td><td>Search with regex across files</td></tr>
+            <tr><td><code>glob</code></td><td><span class="cat-badge cat-readonly">ReadOnly</span></td><td>Find files by glob pattern</td></tr>
+            <tr><td><code>web_search</code></td><td><span class="cat-badge cat-readonly">ReadOnly</span></td><td>Search the web (requires Ollama API key)</td></tr>
+            <tr><td><code>web_fetch</code></td><td><span class="cat-badge cat-readonly">ReadOnly</span></td><td>Fetch a web page by URL</td></tr>
+            <tr><td><code>write</code></td><td><span class="cat-badge cat-destructive">Destructive</span></td><td>Write content to a file</td></tr>
+            <tr><td><code>edit</code></td><td><span class="cat-badge cat-destructive">Destructive</span></td><td>Edit a file by find-and-replace</td></tr>
+            <tr><td><code>run</code></td><td><span class="cat-badge cat-destructive">Destructive</span></td><td>Execute shell commands with timeout &amp; working directory</td></tr>
+            <tr><td><code>switch_mode</code></td><td><span class="cat-badge cat-signal">Signal</span></td><td>Request a mode switch</td></tr>
+            <tr><td><code>question</code></td><td><span class="cat-badge cat-signal">Signal</span></td><td>Ask the user a question with options</td></tr>
+            <tr><td><code>auto_compact</code></td><td><span class="cat-badge cat-signal">Signal</span></td><td>Request conversation compaction</td></tr>
+            <tr><td><code>invoke_skill</code></td><td><span class="cat-badge cat-signal">Signal</span></td><td>Activate a skill by name</td></tr>
+            <tr><td><code>screenshot</code></td><td><span class="cat-badge cat-signal">Signal</span></td><td>Request a screenshot from the user</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
   <!-- Agent Modes -->
-  <section id="modes" class="section section-alt">
+  <section id="modes" class="section">
     <div class="container">
       <h2 class="section-title">Agent Modes</h2>
+      <p class="section-subtitle">Four modes control what the AI can do at any given moment. Switch with <code>/mode</code>, use shortcuts (<code>/plan</code>, <code>/agent</code>, <code>/research</code>, <code>/casual</code>), or let the AI request escalation via <code>switch_mode</code>.</p>
       <div class="table-wrapper">
         <table class="modes-table">
           <thead>
@@ -241,22 +342,22 @@ tinyharness-lib = &quot;0.1&quot;</code></pre>
           <tbody>
             <tr>
               <td><span class="mode-badge mode-casual">casual</span></td>
-              <td>None</td>
-              <td>Pure chat, no filesystem access</td>
+              <td><code>web_search</code>, <code>web_fetch</code></td>
+              <td>Pure chat with web access, no filesystem access</td>
             </tr>
             <tr>
               <td><span class="mode-badge mode-planning">planning</span></td>
-              <td><code>ls</code>, <code>read</code>, <code>grep</code>, <code>glob</code>, <code>web_search</code>, <code>switch_mode</code>, <code>question</code></td>
+              <td>All read-only tools + signal tools</td>
               <td>Analyze &amp; plan, then escalate to agent</td>
             </tr>
             <tr>
               <td><span class="mode-badge mode-agent">agent</span></td>
-              <td>All tools</td>
+              <td>All 15 tools</td>
               <td>Full development access — code, commands, web</td>
             </tr>
             <tr>
               <td><span class="mode-badge mode-research">research</span></td>
-              <td><code>web_search</code>, <code>web_fetch</code>, <code>ls</code>, <code>read</code>, <code>grep</code>, <code>glob</code>, <code>switch_mode</code>, <code>question</code></td>
+              <td>All read-only tools + signal tools</td>
               <td>Web research, then escalate for execution</td>
             </tr>
           </tbody>
@@ -265,58 +366,243 @@ tinyharness-lib = &quot;0.1&quot;</code></pre>
     </div>
   </section>
 
+  <!-- Skills -->
+  <section id="skills" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+      <p class="section-subtitle">Pluggable instruction modules that give the AI specialized knowledge. Each skill lives in a directory with a <code>SKILL.md</code> file.</p>
+      <div class="install-steps">
+        <div class="step">
+          <h3>Discovery Paths</h3>
+          <ul class="checklist">
+            <li><code>~/.config/tinyharness/skills/&lt;name&gt;/SKILL.md</code> — personal (per-user)</li>
+            <li><code>.tinyharness/skills/&lt;name&gt;/SKILL.md</code> — project-local (per-repo)</li>
+          </ul>
+          <p class="step-note">Project skills take precedence over personal skills with the same name.</p>
+        </div>
+        <div class="step">
+          <h3>SKILL.md Format</h3>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-dot"></span><span class="code-dot"></span><span class="code-dot"></span>
+              <button class="copy-btn" data-copy="---
+name: rust-dev
+description: Rust development best practices
+argument-hint: Rust file or module to review
+compatibility: rust
+disable-model-invocation: false
+license: MIT
+metadata:
+  version: &quot;1.0&quot;
+user-invocable: true
+---
+
+# Rust Development Skill
+
+Always run cargo fmt and cargo clippy...">Copy</button>
+            </div>
+            <pre><code>---
+name: rust-dev
+description: Rust development best practices
+argument-hint: Rust file or module to review
+compatibility: rust
+disable-model-invocation: false
+license: MIT
+metadata:
+  version: "1.0"
+user-invocable: true
+---
+
+# Rust Development Skill
+
+Always run `cargo fmt` and `cargo clippy`...</code></pre>
+          </div>
+          <p class="step-note">All frontmatter fields are optional. Skills over 10,000 characters are truncated (70% head / 30% tail).</p>
+        </div>
+        <div class="step">
+          <h3>Invoking Skills</h3>
+          <ul class="checklist">
+            <li><strong>AI</strong>: calls <code>invoke_skill</code> with the skill name (unless <code>disable-model-invocation: true</code>)</li>
+            <li><strong>User</strong>: <code>/use &lt;name&gt;</code> or <code>/skill use &lt;name&gt;</code></li>
+            <li><strong>Deactivate</strong>: <code>/unload &lt;name&gt;</code></li>
+          </ul>
+          <p class="step-note">Both personal and project-local skill directories are scanned at startup and accessible via <code>/skills</code>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Slash Commands -->
   <section id="commands" class="section">
     <div class="container">
       <h2 class="section-title">Slash Commands</h2>
+      <p class="section-subtitle">22+ commands for session management, configuration, file pinning, skills, and more.</p>
+
+      <h3 class="cmd-group-title">Session Management</h3>
+      <div class="commands-grid">
+        <div class="command-item">
+          <code class="command-name">/sessions</code>
+          <span class="command-desc">List all saved sessions</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/session &lt;id&gt;</code>
+          <span class="command-desc">Switch to a session by ID prefix</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/session delete</code>
+          <span class="command-desc">Delete a session with confirmation</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/rename &lt;name&gt;</code>
+          <span class="command-desc">Rename the current session</span>
+        </div>
+      </div>
+
+      <h3 class="cmd-group-title">Mode &amp; Model</h3>
+      <div class="commands-grid">
+        <div class="command-item">
+          <code class="command-name">/mode</code>
+          <span class="command-desc">Show or switch agent mode</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/plan /agent</code>
+          <span class="command-desc">Quick mode switch aliases</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/research /casual</code>
+          <span class="command-desc">Quick mode switch aliases</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/model [name]</code>
+          <span class="command-desc">List available models or switch</span>
+        </div>
+      </div>
+
+      <h3 class="cmd-group-title">Context &amp; Files</h3>
+      <div class="commands-grid">
+        <div class="command-item">
+          <code class="command-name">/add &lt;file&gt;</code>
+          <span class="command-desc">Pin a file into context</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/drop &lt;file&gt;</code>
+          <span class="command-desc">Remove a pinned file</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/files</code>
+          <span class="command-desc">List all pinned files</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/dropall</code>
+          <span class="command-desc">Remove all pinned files</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/refresh</code>
+          <span class="command-desc">Re-read pinned files from disk</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/context</code>
+          <span class="command-desc">Show auto-detected project context</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/init</code>
+          <span class="command-desc">Generate or update TINYHARNESS.md</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/project-settings</code>
+          <span class="command-desc">Show or init per-project settings</span>
+        </div>
+      </div>
+
+      <h3 class="cmd-group-title">Conversation</h3>
+      <div class="commands-grid">
+        <div class="command-item">
+          <code class="command-name">/compact [focus]</code>
+          <span class="command-desc">Summarize conversation history</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/image [path|clear]</code>
+          <span class="command-desc">Attach an image to the next message</span>
+        </div>
+      </div>
+
+      <h3 class="cmd-group-title">Skills</h3>
+      <div class="commands-grid">
+        <div class="command-item">
+          <code class="command-name">/skills</code>
+          <span class="command-desc">List all available skills</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/skill &lt;name&gt;</code>
+          <span class="command-desc">Show a skill's details</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/use &lt;name&gt;</code>
+          <span class="command-desc">Activate a skill</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/unload &lt;name&gt;</code>
+          <span class="command-desc">Deactivate a loaded skill</span>
+        </div>
+      </div>
+
+      <h3 class="cmd-group-title">Configuration</h3>
+      <div class="commands-grid">
+        <div class="command-item">
+          <code class="command-name">/settings [all]</code>
+          <span class="command-desc">Show current configuration</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/command</code>
+          <span class="command-desc">Manage auto-accepted &amp; denied commands</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/apikey [key|clear]</code>
+          <span class="command-desc">Set, show, or clear API key</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/contextlimit</code>
+          <span class="command-desc">Show or set context warning threshold</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/autoaccept</code>
+          <span class="command-desc">Toggle auto-accept for safe commands</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/showthink</code>
+          <span class="command-desc">Toggle thinking/reasoning display</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/timeout</code>
+          <span class="command-desc">Set Ollama request timeout</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/retries</code>
+          <span class="command-desc">Set Ollama max retries</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/think [level]</code>
+          <span class="command-desc">Set Ollama reasoning/think level</span>
+        </div>
+        <div class="command-item">
+          <code class="command-name">/audit</code>
+          <span class="command-desc">View command execution audit log</span>
+        </div>
+      </div>
+
+      <h3 class="cmd-group-title">General</h3>
       <div class="commands-grid">
         <div class="command-item">
           <code class="command-name">/help</code>
           <span class="command-desc">Show available commands</span>
         </div>
         <div class="command-item">
-          <code class="command-name">/mode</code>
-          <span class="command-desc">Switch agent mode</span>
+          <code class="command-name">/clear</code>
+          <span class="command-desc">Clear terminal screen</span>
         </div>
         <div class="command-item">
-          <code class="command-name">/compact</code>
-          <span class="command-desc">Summarize older messages</span>
-        </div>
-        <div class="command-item">
-          <code class="command-name">/session</code>
-          <span class="command-desc">Manage conversation sessions</span>
-        </div>
-        <div class="command-item">
-          <code class="command-name">/settings</code>
-          <span class="command-desc">Show configuration</span>
-        </div>
-        <div class="command-item">
-          <code class="command-name">/command</code>
-          <span class="command-desc">Manage auto-accepted commands</span>
-        </div>
-        <div class="command-item">
-          <code class="command-name">/model</code>
-          <span class="command-desc">List or switch models</span>
-        </div>
-        <div class="command-item">
-          <code class="command-name">/apikey</code>
-          <span class="command-desc">Set/show/clear API key</span>
-        </div>
-        <div class="command-item">
-          <code class="command-name">/add &nbsp;/drop</code>
-          <span class="command-desc">Pin/unpin files into context</span>
-        </div>
-        <div class="command-item">
-          <code class="command-name">/context</code>
-          <span class="command-desc">Show project context</span>
-        </div>
-        <div class="command-item">
-          <code class="command-name">/init</code>
-          <span class="command-desc">Generate TINYHARNESS.md</span>
-        </div>
-        <div class="command-item">
-          <code class="command-name">/clear &nbsp;/exit</code>
-          <span class="command-desc">Clear screen / quit</span>
+          <code class="command-name">/exit /quit</code>
+          <span class="command-desc">Exit TinyHarness</span>
         </div>
       </div>
     </div>
@@ -326,20 +612,35 @@ tinyharness-lib = &quot;0.1&quot;</code></pre>
   <section id="structure" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Project Structure</h2>
-      <p class="section-subtitle">Cargo workspace with two crates — a frontend-agnostic library and a terminal-UI binary.</p>
-      <div class="structure-grid">
+      <p class="section-subtitle">Cargo workspace with three crates — a frontend-agnostic library, a terminal UI library, and a CLI binary.</p>
+      <div class="structure-grid structure-grid-3">
         <div class="structure-col">
           <h4>Library <code>tinyharness-lib/</code></h4>
           <div class="file-tree">
             <ul>
-              <li><span class="tree-folder">provider/</span> Provider trait + implementations</li>
+              <li><span class="tree-file">lib.rs</span> Re-exports all public types</li>
+              <li><span class="tree-folder">provider/</span> Provider trait + Ollama, llama.cpp, vLLM</li>
               <li><span class="tree-folder">config/</span> Settings persistence</li>
-              <li><span class="tree-file">mode.rs</span> Agent modes + system prompts</li>
-              <li><span class="tree-file">context.rs</span> Project metadata + TINYHARNESS.md</li>
+              <li><span class="tree-file">mode.rs</span> AgentMode enum + .md prompts</li>
+              <li><span class="tree-file">context.rs</span> Project metadata + instruction files</li>
               <li><span class="tree-file">session.rs</span> JSONL session persistence</li>
-              <li><span class="tree-file">token.rs</span> Token estimation</li>
+              <li><span class="tree-file">token.rs</span> Token estimation, context windows</li>
               <li><span class="tree-file">skill.rs</span> Skill discovery &amp; registry</li>
-              <li><span class="tree-folder">tools/</span> Tool implementations</li>
+              <li><span class="tree-file">image.rs</span> Image attachment handling</li>
+              <li><span class="tree-folder">prompts/</span> Default system prompts</li>
+              <li><span class="tree-folder">tools/</span> 15 tool implementations</li>
+            </ul>
+          </div>
+        </div>
+        <div class="structure-col">
+          <h4>UI Library <code>tinyharness-ui/</code></h4>
+          <div class="file-tree">
+            <ul>
+              <li><span class="tree-file">output.rs</span> Structured output writer</li>
+              <li><span class="tree-file">style.rs</span> ANSI color constants</li>
+              <li><span class="tree-folder">ui/</span> Confirm prompts, diff display, input</li>
+              <li><span class="tree-folder">tui/</span> ⚠️ Experimental TUI subsystem</li>
+              <li><span class="tree-folder">widgets/</span> Conversation, input, sidebar, etc.</li>
             </ul>
           </div>
         </div>
@@ -347,13 +648,165 @@ tinyharness-lib = &quot;0.1&quot;</code></pre>
           <h4>Binary <code>src/</code></h4>
           <div class="file-tree">
             <ul>
-              <li><span class="tree-file">main.rs</span> Entry point, CLI parsing</li>
-              <li><span class="tree-file">agent.rs</span> Main interaction loop</li>
-              <li><span class="tree-file">style.rs</span> ANSI color constants</li>
-              <li><span class="tree-folder">commands/</span> Slash command handlers</li>
-              <li><span class="tree-folder">ui/</span> Terminal UI helpers</li>
+              <li><span class="tree-file">main.rs</span> Entry point, CLI parsing (clap)</li>
+              <li><span class="tree-folder">agent/</span> Main loop, TUI loop, tools, safety</li>
+              <li><span class="tree-folder">commands/</span> 22+ slash command handlers</li>
             </ul>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Instructions -->
+  <section id="instructions" class="section">
+    <div class="container">
+      <h2 class="section-title">Project Instructions</h2>
+      <p class="section-subtitle">TinyHarness auto-discovers project instruction files, similar to <code>CLAUDE.md</code> in Claude Code and <code>AGENTS.md</code> in other agents.</p>
+      <div class="table-wrapper" style="margin-bottom: 30px;">
+        <table class="modes-table">
+          <thead>
+            <tr>
+              <th>Priority</th>
+              <th>File</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><code>TINYHARNESS.md</code></td><td>TinyHarness-native</td></tr>
+            <tr><td>2</td><td><code>.tinyharness.md</code></td><td>Hidden variant</td></tr>
+            <tr><td>3</td><td><code>AGENTS.md</code></td><td>Industry standard (60K+ repos)</td></tr>
+            <tr><td>4</td><td><code>CLAUDE.md</code></td><td>Claude Code compatibility</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="install-steps" style="max-width: 700px;">
+        <div class="step">
+          <h3>Generating with <code>/init</code></h3>
+          <p class="step-note">Run <code>/init</code> in a TinyHarness session and the AI will analyze your project and generate a <code>TINYHARNESS.md</code>. If one already exists, <code>/init</code> updates it — keeping accurate parts, removing outdated ones, and adding what's missing.</p>
+        </div>
+        <div class="step">
+          <h3>Customizing Discovery</h3>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-dot"></span><span class="code-dot"></span><span class="code-dot"></span>
+              <button class="copy-btn" data-copy="export TINYHARNESS_MD_FILES=&quot;CLAUDE.md,TEAM_RULES.md&quot;
+tinyharness">Copy</button>
+            </div>
+            <pre><code>export TINYHARNESS_MD_FILES="CLAUDE.md,TEAM_RULES.md"
+tinyharness</code></pre>
+          </div>
+          <p class="step-note">Or set <code>project_md_files</code> in <code>~/.config/tinyharness/settings.json</code>. Additional per-project files can be loaded from <code>.tinyharness/config.json</code>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Per-Project Settings -->
+  <section id="project-settings" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Per-Project Settings</h2>
+      <p class="section-subtitle">Layer <code>.tinyharness/config.json</code> over global settings. Settings cascade: global → project → CLI flags (highest priority).</p>
+      <div class="install-steps" style="max-width: 700px;">
+        <div class="step">
+          <h3>Supported Fields</h3>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-dot"></span><span class="code-dot"></span><span class="code-dot"></span>
+              <button class="copy-btn" data-copy="{
+  &quot;safe_command_prefixes&quot;: [&quot;python -m pytest&quot;, &quot;npm run lint&quot;],
+  &quot;denied_command_prefixes&quot;: [&quot;git push --force&quot;],
+  &quot;auto_accept_safe_commands&quot;: false,
+  &quot;context_limit&quot;: 32768,
+  &quot;project_md_files&quot;: [&quot;RULES.md&quot;, &quot;.cursorrules&quot;],
+  &quot;preferred_mode&quot;: &quot;agent&quot;
+}">Copy</button>
+            </div>
+            <pre><code>{
+  "safe_command_prefixes": ["python -m pytest", "npm run lint"],
+  "denied_command_prefixes": ["git push --force"],
+  "auto_accept_safe_commands": false,
+  "context_limit": 32768,
+  "project_md_files": ["RULES.md", ".cursorrules"],
+  "preferred_mode": "agent"
+}</code></pre>
+          </div>
+          <p class="step-note">Manage with <code>/project-settings</code> (show merged) or <code>/project-settings init</code> (generate template). Sources are displayed as <code>(project)</code>, <code>(global)</code>, or <code>(default)</code>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Language Detection -->
+  <section id="languages" class="section">
+    <div class="container">
+      <h2 class="section-title">Language Detection</h2>
+      <p class="section-subtitle">Auto-detects 17+ languages and build tools from marker files in the workspace root. Can identify multiple languages in monorepos (e.g. "Rust + Node.js").</p>
+      <div class="table-wrapper">
+        <table class="modes-table">
+          <thead>
+            <tr>
+              <th>Language</th>
+              <th>Detection Files</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Rust</td><td><code>Cargo.toml</code></td></tr>
+            <tr><td>Zig</td><td><code>build.zig</code>, <code>build.zig.zon</code></td></tr>
+            <tr><td>Deno</td><td><code>deno.json</code>, <code>deno.jsonc</code></td></tr>
+            <tr><td>Bun</td><td><code>bun.lockb</code>, <code>bun.lock</code></td></tr>
+            <tr><td>Swift</td><td><code>Package.swift</code></td></tr>
+            <tr><td>Ruby</td><td><code>Gemfile</code></td></tr>
+            <tr><td>Elixir</td><td><code>mix.exs</code></td></tr>
+            <tr><td>Haskell</td><td><code>stack.yaml</code>, <code>*.cabal</code></td></tr>
+            <tr><td>Kotlin</td><td><code>build.gradle.kts</code>, <code>settings.gradle.kts</code></td></tr>
+            <tr><td>.NET</td><td><code>*.csproj</code>, <code>*.sln</code></td></tr>
+            <tr><td>Dart/Flutter</td><td><code>pubspec.yaml</code></td></tr>
+            <tr><td>Nix</td><td><code>flake.nix</code>, <code>default.nix</code></td></tr>
+            <tr><td>Node.js</td><td><code>package.json</code></td></tr>
+            <tr><td>Python</td><td><code>pyproject.toml</code>, <code>setup.py</code>, <code>requirements.txt</code></td></tr>
+            <tr><td>Go</td><td><code>go.mod</code></td></tr>
+            <tr><td>Java (Gradle)</td><td><code>build.gradle</code></td></tr>
+            <tr><td>Java (Maven)</td><td><code>pom.xml</code></td></tr>
+            <tr><td>C/C++ (CMake)</td><td><code>CMakeLists.txt</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="step-note" style="text-align: center; margin-top: 16px;">Unknown project types fall back to <code>Makefile</code> or <code>Justfile</code> hints. Detected commands are injected into the system prompt.</p>
+    </div>
+  </section>
+
+  <!-- Development -->
+  <section id="development" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Development</h2>
+      <p class="section-subtitle">Build, test, lint, and format the workspace.</p>
+      <div class="usage-grid">
+        <div class="usage-card">
+          <h4>Build &amp; Test</h4>
+          <div class="code-block small">
+            <pre><code>cargo build
+cargo test --workspace
+cargo test -p tinyharness-lib</code></pre>
+          </div>
+          <p>Run all tests or a specific crate.</p>
+        </div>
+        <div class="usage-card">
+          <h4>Lint &amp; Format</h4>
+          <div class="code-block small">
+            <pre><code>cargo clippy --workspace -- -D warnings
+cargo fmt --all -- --check</code></pre>
+          </div>
+          <p>No clippy warnings, clean formatting.</p>
+        </div>
+        <div class="usage-card">
+          <h4>Nix Flake</h4>
+          <div class="code-block small">
+            <pre><code>nix build
+nix flake check
+nix develop</code></pre>
+          </div>
+          <p>Build, run all checks, or enter dev shell.</p>
         </div>
       </div>
     </div>
@@ -367,7 +820,7 @@ tinyharness-lib = &quot;0.1&quot;</code></pre>
         <div class="security-icon">⚠️</div>
         <div>
           <p>TinyHarness grants LLMs the ability to interact with your filesystem through tool calling. <strong>Run within a sandboxed environment</strong> (Docker container, VM) to prevent unintended modifications.</p>
-          <p>The <code>run</code> tool can never be auto-accepted — unlike <code>write</code> and <code>edit</code>. Always review proposed actions. You assume full responsibility for all operations performed by the AI.</p>
+          <p>The <code>run</code> tool can never be auto-accepted — even with auto-accept mode (<code>a</code>) — unlike <code>write</code> and <code>edit</code>. Safe commands (e.g., <code>ls</code>, <code>git status</code>) can be auto-accepted when <code>/autoaccept</code> is on. Always review proposed actions. You assume full responsibility for all operations performed by the AI.</p>
         </div>
       </div>
     </div>
@@ -379,7 +832,8 @@ tinyharness-lib = &quot;0.1&quot;</code></pre>
       <div class="footer-content">
         <div class="footer-left">
           <p>TinyHarness — Built with 🦀 Rust</p>
-          <p class="footer-license">MIT Licensed</p>
+          <p class="footer-license">MIT Licensed · v0.2.0</p>
+          <p class="footer-copyright">© 2026 PTFOPlayer. All rights reserved.</p>
         </div>
         <div class="footer-right">
           <a href="https://github.com/PTFOPlayer/TinyHarness" target="_blank" rel="noopener">

@@ -273,7 +273,7 @@ code {
 }
 
 .hero-screenshot {
-  max-width: 800px;
+  max-width: 960px;
   margin: 0 auto;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -702,6 +702,12 @@ code {
   margin-top: 2px;
 }
 
+.footer-copyright {
+  font-size: 0.78rem !important;
+  color: var(--text-muted) !important;
+  margin-top: 2px;
+}
+
 .footer-right a {
   display: flex;
   align-items: center;
@@ -714,6 +720,39 @@ code {
 .footer-right a:hover {
   color: var(--text-primary);
   text-decoration: none;
+}
+
+/* --- Command Group Titles --- */
+.cmd-group-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 32px;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+}
+
+.cmd-group-title:first-of-type {
+  margin-top: 40px;
+}
+
+/* --- Tool Category Badges --- */
+.cat-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.cat-readonly   { background: rgba(63, 185, 80, 0.15); color: #3fb950; }
+.cat-destructive { background: rgba(248, 81, 73, 0.15);  color: #f85149; }
+.cat-signal     { background: rgba(210, 153, 34, 0.15); color: #d29922; }
+
+/* --- Three-Column Structure Grid --- */
+.structure-grid-3 {
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 /* --- Responsive --- */
@@ -762,6 +801,10 @@ code {
   }
 
   .structure-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .structure-grid-3 {
     grid-template-columns: 1fr;
   }
 
